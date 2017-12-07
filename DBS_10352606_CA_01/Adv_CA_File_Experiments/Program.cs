@@ -16,14 +16,19 @@ using System.Text.RegularExpressions;
 //The deadline is the 10th December 2017 on moodle @ 23:55.
 
 
+// Files are read from & output to the directory 'C:\dbs\'
+// Please ensure this directory is available on your system & that it 
+// contains the file 'commit_changes.txt'
+
+
 
 namespace DBS_10352606_CA_01
 {
     class Program
     {
         static readonly string PathFileOutput = @"C:\dbs\csvOutputFile.csv";
-        //static readonly string PathFileInput = @"C:\dbs\commit_changes.txt";
-        static readonly string PathFileInput = @"C:\dbs\commit_changes_edit2.txt";
+        static readonly string PathFileInput  = @"C:\commit_changes.txt";
+        //static readonly string PathFileInput = @"C:\dbs\commit_changes_edit2.txt";
         
          
 
