@@ -1,0 +1,6 @@
+C:\Users\Gord\AdvancedProgramming\RegexExp1\RegexExp1\bin\Debug\RegexExp1.exe.config
+C:\Users\Gord\AdvancedProgramming\RegexExp1\RegexExp1\bin\Debug\RegexExp1.exe
+C:\Users\Gord\AdvancedProgramming\RegexExp1\RegexExp1\bin\Debug\RegexExp1.pdb
+C:\Users\Gord\AdvancedProgramming\RegexExp1\RegexExp1\obj\Debug\RegexExp1.csproj.CoreCompileInputs.cache
+C:\Users\Gord\AdvancedProgramming\RegexExp1\RegexExp1\obj\Debug\RegexExp1.exe
+C:\Users\Gord\AdvancedProgramming\RegexExp1\RegexExp1\obj\Debug\RegexExp1.pdb
