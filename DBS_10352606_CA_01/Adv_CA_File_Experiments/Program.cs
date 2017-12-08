@@ -16,30 +16,28 @@ using System.Text.RegularExpressions;
 //The deadline is the 10th December 2017 on moodle @ 23:55.
 
 
+
+
 // Files are read from & output to the directory 'C:\dbs\'
 // Please ensure this directory is available on your system & that it 
 // contains the file 'commit_changes.txt'
-
 
 
 namespace DBS_10352606_CA_01
 {
     class Program
     {
+        // Paths for reading in & writing out file
         static readonly string PathFileOutput = @"C:\dbs\csvOutputFile.csv";
-        static readonly string PathFileInput  = @"C:\commit_changes.txt";
-        //static readonly string PathFileInput = @"C:\dbs\commit_changes_edit2.txt";
-        
-         
+        static readonly string PathFileInput  = @"C:\dbs\commit_changes.txt";
+                 
 
         static void Main(string[] args)
         {
             List<CA_File_Unit> myList = new List<CA_File_Unit>();
             int commitCount = 0;
             string inputString = string.Empty;
-            string myRegexExpression72Hyp = @"\-{72}";
-
-            
+            string regex72Hypens = @"\-{72}";            
                                
 
             try             // Begin reading file
@@ -51,46 +49,31 @@ namespace DBS_10352606_CA_01
                     {
                         inputString = txtReader.ReadLine();
                         while (txtReader.Peek() > -1)   // check not at end of file
-                        {
-                            
-                            // Clear screen & Wait
-                            Console.WriteLine("\n\nReading contents from file: [enter] to continue  -  Maximise console window to view correctly.\n\n");
-                            Console.ReadLine();
-                            Console.Clear();
-
-
+                        {                            
                             // Create new object for file block
                             CA_File_Unit currentBlock = new CA_File_Unit();
 
 
-
-                            Match regExMatch = Regex.Match(inputString, myRegexExpression72Hyp);
+                            // use regular expression to find the 72 hyphen start of file block
+                            Match regExMatch = Regex.Match(inputString, regex72Hypens);
 
                             if (regExMatch.Success)
                             {
                                 inputString = txtReader.ReadLine();                                
 
                                 // Regular Expression to parse Main-Data-Line   ( includes no / name / date etc )                                
-                                string myRegexMainLine = @"(\w*)\s*\|\s*([\w\W]*)\s*\|\s*";
-                                myRegexMainLine += @"(\d{4}[\-|\s]*\d{2}[\-|\s]*\d{2})";   //   Short Date    
-                                myRegexMainLine += @"\s*(\d{2}:\d{2}:\d{2})";              //   Time
-                                myRegexMainLine += @"\s*(\+\s*\d{4})";                     //   Offset
-                                myRegexMainLine += @"\s*\W(.{16})";                        //   LongDate
-                                myRegexMainLine += @"\W*(\d*)";                            //   No Of Lines
+                                string regexMainLine = @"(\w*)\s*\|\s*([\w\W]*)\s*\|\s*";
+                                regexMainLine += @"(\d{4}[\-|\s]*\d{2}[\-|\s]*\d{2})";   //   Short Date    
+                                regexMainLine += @"\s*(\d{2}:\d{2}:\d{2})";              //   Time
+                                regexMainLine += @"\s*(\+\s*\d{4})";                     //   Offset
+                                regexMainLine += @"\s*\W(.{16})";                        //   LongDate
+                                regexMainLine += @"\W*(\d*)";                            //   No Of Lines
 
 
                                 // Display Main-Data-Line on Screen
-                                MatchCollection matches = Regex.Matches(inputString, myRegexMainLine, RegexOptions.Multiline);  //, RegexOptions.Multiline);               
+                                MatchCollection matches = Regex.Matches(inputString, regexMainLine, RegexOptions.Multiline);                 
                                 foreach (Match match in matches)
                                 {
-                                    Console.WriteLine("\nR-Number      :   {0}", match.Groups[1].Value); //Console.ReadLine();
-                                    Console.WriteLine("Name          :   {0}", match.Groups[2].Value); //Console.ReadLine();
-                                    Console.WriteLine("Date          :   {0}", match.Groups[3].Value); //Console.ReadLine();
-                                    Console.WriteLine("Time          :   {0}", match.Groups[4].Value); //Console.ReadLine();
-                                    Console.WriteLine("Offset        :   {0}", match.Groups[5].Value); //Console.ReadLine();
-                                    Console.WriteLine("Long-Date     :   {0}", match.Groups[6].Value); //Console.ReadLine();
-                                    Console.WriteLine("No of Lines   :   {0}\n\n", match.Groups[7].Value); //Console.ReadLine(); 
-
                                     // Write Main-Data-Line to object
                                     currentBlock.RNumber = match.Groups[1].Value;
                                     currentBlock.Name = match.Groups[2].Value;
@@ -103,34 +86,26 @@ namespace DBS_10352606_CA_01
                                     currentBlock.NoOfLines = tempInt;
                                 } // end foreach 
                             } // end if
-                              //Console.ReadLine();
 
 
 
-                            // ****   Changed Paths Section
-                            // *************************************************************************
-                            inputString = txtReader.ReadLine();    // skip line with text:   "Changed paths:
-                            //string myRegexExpression = @"Changed paths:";
-                            //Match regExMatch10 = Regex.Match(inputString, myRegexExpression);
-                            //if (regExMatch10.Success)
-                            //{
-                            //    Console.WriteLine("\n\nFound Control Path: {0}\n\n", inputString);
-                            //} // end if
+                            // **** Changed Paths Section ****
+                            // *******************************
 
-                            // read next line
+                            inputString = txtReader.ReadLine();    // skip line with the text:   "Changed paths:
+                            
+                            // continue & read next line
                             inputString = txtReader.ReadLine();
                             inputString = inputString.Trim();  // remove blank space from start & end of string
                             string tempChangedPath = inputString + ",";
 
                             while (!string.IsNullOrWhiteSpace(inputString))
-                            {
-                                Console.WriteLine("ChangedPaths(input from file):\n{0}", inputString);
+                            {                                
                                 inputString = txtReader.ReadLine();
                                 inputString = inputString.Trim();  // remove blank space from start & end string
                                 tempChangedPath += inputString + ",";
                             } // end while  
-                            Console.WriteLine("\nChangedPaths(final combined string):\n{0}", tempChangedPath);
-
+                            
                             // Write final ChangedPaths string to object
                             currentBlock.ChangedPaths = tempChangedPath;
 
@@ -138,55 +113,43 @@ namespace DBS_10352606_CA_01
 
 
                             // **** Comments Section ****
-                            // **********************************************************************
-                           // Console.WriteLine("\n\nBlank line Found:\n\n");
-
-                            // read next line
+                            // **************************
+                           
+                            // Blank line found and skipped over - read next line                            
                             inputString = txtReader.ReadLine();
 
                             // replace any "double quotes" with 'single quotes' for better csv file display in Excel
                             string regexQuotesPattern = "\"";
                             string replacement = "'";
-                            //Regex changeQuotes1 = new Regex(regexQuotesPattern);
-                            //string result = changeQuotes1.Replace(inputString, replacement);
-
-                            //string tempComments =  result  + "\n";
+                                                        
                             string tempComments = string.Empty;
                             string result = string.Empty;
-
-                            Console.WriteLine("\n\nComments(input from file):");
+                                                        
                             // Loop through comment lines until 72 x hyphen marker is encountered
                             bool con = true;
-                            while (con)  // if its NOT the EOF 72 hyphen line
+                            while (con)  // if NOT the EOF 72 hyphen line
                             {
-                                Match regExMatch13 = Regex.Match(inputString, myRegexExpression72Hyp);
+                                Match regExMatch13 = Regex.Match(inputString, regex72Hypens);
                                 if (regExMatch13.Success)
                                 {
                                     con = false;   // if regex match 72 * hyphen - leave block
                                 }
-                                else
-                                {   //con = true;
-                                    Console.WriteLine("{0}", inputString);
-
+                                else    
+                                {  
                                     // replace any "double quotes" with 'single quotes' for better csv file display in Excel
-
                                     Regex changeQuotes2 = new Regex(regexQuotesPattern);
                                     result = changeQuotes2.Replace(inputString, replacement);
-
                                     tempComments += result + "\n";
                                     inputString = txtReader.ReadLine();
                                 } // end else                                                               
                             } // end while
 
-                            Console.WriteLine("\nComments(final combined string):\n{0}\n\n", tempComments);
-
-
+                           
                             // Write final Comments string to object
                             currentBlock.Comments = tempComments;
 
                             // Add Main-Data-Line object to list
                             myList.Add(currentBlock);
-
 
                         } // end while                                           
                     } // end inner Using
@@ -194,31 +157,34 @@ namespace DBS_10352606_CA_01
 
            
 
-
-            Console.Write("Enter to continue to file display");
-            Console.ReadLine();
             Console.Clear();
+            Console.WriteLine("\nData has been read into memory & stored in a list of objects.");
+            Console.Write("\n[Enter] to continue to write to a new output file.\n");
+            Console.ReadLine();
+            
 
-            foreach (CA_File_Unit cfu in myList)
-            {
-                Console.WriteLine(cfu.RNumber);
-                Console.WriteLine(cfu.Name);
-                Console.WriteLine(cfu.DateShort);
-                Console.WriteLine(cfu.Time);
-                Console.WriteLine(cfu.Offset);
-                Console.WriteLine(cfu.DateLong);
-                Console.WriteLine(cfu.NoOfLines);
-                Console.WriteLine(cfu.ChangedPaths);
-                Console.WriteLine(cfu.Comments);
-                Console.WriteLine();                
-            } // end foreach
+
+            //// Display all data added to object list - uncomment to view
+            //foreach (CA_File_Unit cfu in myList)
+            //{
+            //    Console.WriteLine(cfu.RNumber);
+            //    Console.WriteLine(cfu.Name);
+            //    Console.WriteLine(cfu.DateShort);
+            //    Console.WriteLine(cfu.Time);
+            //    Console.WriteLine(cfu.Offset);
+            //    Console.WriteLine(cfu.DateLong);
+            //    Console.WriteLine(cfu.NoOfLines);
+            //    Console.WriteLine(cfu.ChangedPaths);
+            //    Console.WriteLine(cfu.Comments);
+            //    Console.WriteLine();                
+            //} // end foreach
 
 
 
 
 
             // **** Write to CSV file ****
-            // *******************************
+            // ***************************
 
             // write file
             using (Stream fs = File.Create(PathFileOutput))
@@ -239,69 +205,21 @@ namespace DBS_10352606_CA_01
                         txtWriter.Write(cfu.Offset + ",");
                         txtWriter.Write("\"" + cfu.DateLong + "\"" + ",");
                         txtWriter.Write(cfu.NoOfLines + ",");
-                        txtWriter.Write("\"" + cfu.Comments + "\"" + ",");
-                        //txtWriter.Write(cfu.Comments + ",");
+                        txtWriter.Write("\"" + cfu.Comments + "\"" + ",");                       
                         txtWriter.WriteLine(cfu.ChangedPaths + ",");
-
+                        //   
                         commitCount++;
-                    }
-
-
-                    ////****test - multiline cell in excel**************************************
-                    ////                     
-                    //string header = "Reference No," + "Name," + "Date," + "Rows," + "Extras,";
-                    //txtWriter.WriteLine(header);
-
-                    //txtWriter.Write("r11111111" + ",");
-                    //txtWriter.Write("Gord" + ",");
-                    //txtWriter.Write("06/03/1971" + ",");
-                    //string fours = "\"Row One\n" + "Row Two\n" + "Row Three\n" + "Row Four\n\"";
-                    //txtWriter.Write(fours + ",");
-                    //txtWriter.Write("After fives 55");
-                    //txtWriter.WriteLine(",");
-
-
-                    //txtWriter.Write("r2222222" + ",");
-                    //txtWriter.Write("Amanda" + ",");
-                    //txtWriter.Write("30/7/1968" + ",");
-                    //fours = "\"FTRPC - 500: Frontier Android || Inconsistencey in My Activity screen\n" 
-                    //    + "Client used systemAttribute name = 'Creation - Date' instead of versionCreated as version created.\n"
-                    //          + "Row Three\n" + "Row Four\n\"";
-                    //txtWriter.Write(fours + ",");
-                    //txtWriter.Write("After fives 55");
-                    //txtWriter.WriteLine(",");
-
-
-                    //txtWriter.Write("r3333333" + ",");
-                    //txtWriter.Write("Smith" + ",");
-                    //txtWriter.Write("19/12/1950" + ",");
-                    //fours = "\"Row One\n" + "Row Two\n" + "Row Three\n" + "Row Four\n\"";
-                    //txtWriter.Write(fours + ",");
-                    //txtWriter.Write("After fives 55");
-                    //txtWriter.WriteLine(",");
-
-
-
-
-                    // *************************************************************************
-                    Console.Write("Enter - to continue");
-                    Console.ReadLine();
-                    Console.Write("Data written to file - Commit Count No: {0}", commitCount);
-                    Console.ReadLine();
-
-
-                } // end inner Using
-            } // end outer using
-
-            Console.ReadLine();
+                    }                    
+                    Console.Write("Data written to file - Commit Count No: {0}\n\n", commitCount);
+                    } // end inner Using
+                } // end outer using          
 
             } // end try
             catch
             {
-                Console.WriteLine("Error - no file available to read");
-                Console.WriteLine("The file:  commit_changes.txt   must be in the C:\\ directory   \n\n");
+                Console.WriteLine("\nError - no file available to read");
+                Console.WriteLine("The file:  commit_changes.txt   must be in the C:\\dbs\\   directory   \n\n");
             }
-
         } // end Main
     } // end Program
 } // end Namespace
