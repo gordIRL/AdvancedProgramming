@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDT_Calculator", "TDT_Calculator\TDT_Calculator.csproj", "{02CC87AB-C371-4193-B2FF-9FB8BBB51C07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD_Calculator_UnitTests_1", "TDD_Calculator_UnitTests_1\TDD_Calculator_UnitTests_1.csproj", "{72691D5D-504E-4552-8F6D-30F858F9158D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02CC87AB-C371-4193-B2FF-9FB8BBB51C07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02CC87AB-C371-4193-B2FF-9FB8BBB51C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02CC87AB-C371-4193-B2FF-9FB8BBB51C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02CC87AB-C371-4193-B2FF-9FB8BBB51C07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72691D5D-504E-4552-8F6D-30F858F9158D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72691D5D-504E-4552-8F6D-30F858F9158D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72691D5D-504E-4552-8F6D-30F858F9158D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72691D5D-504E-4552-8F6D-30F858F9158D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F001E440-ABAD-45F8-A666-EFEF107AFB35}
+	EndGlobalSection
+EndGlobal
