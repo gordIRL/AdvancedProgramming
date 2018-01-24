@@ -1,0 +1,7 @@
+C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_01\Adv_CA_File_Experiments\bin\Debug\Adv_CA_File_Experiments.exe.config
+C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_01\Adv_CA_File_Experiments\bin\Debug\Adv_CA_File_Experiments.exe
+C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_01\Adv_CA_File_Experiments\bin\Debug\Adv_CA_File_Experiments.pdb
+C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_01\Adv_CA_File_Experiments\obj\Debug\Adv_CA_File_Experiments.csprojResolveAssemblyReference.cache
+C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_01\Adv_CA_File_Experiments\obj\Debug\Adv_CA_File_Experiments.csproj.CoreCompileInputs.cache
+C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_01\Adv_CA_File_Experiments\obj\Debug\Adv_CA_File_Experiments.exe
+C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_01\Adv_CA_File_Experiments\obj\Debug\Adv_CA_File_Experiments.pdb
