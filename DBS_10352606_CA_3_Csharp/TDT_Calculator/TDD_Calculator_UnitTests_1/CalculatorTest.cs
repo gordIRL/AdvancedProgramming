@@ -13,7 +13,7 @@ namespace TDD_Calculator_UnitTests_1
             //arrange            
             Calculator myCalculator = new Calculator();
             // act           
-            double result = myCalculator.AddNums(2, 2);
+            double result = myCalculator.AddNumbers(2, 2);
             //assert
             double expected = 4;
             Assert.AreEqual(expected, result);
@@ -26,7 +26,7 @@ namespace TDD_Calculator_UnitTests_1
             //arrange            
             Calculator myCalculator = new Calculator();
             // act          
-            double result = myCalculator.AddNums(2, 3);
+            double result = myCalculator.AddNumbers(2, 3);
             //assert
             double expected = 5;
             Assert.AreEqual(expected, result);
@@ -40,7 +40,7 @@ namespace TDD_Calculator_UnitTests_1
             //arrange            
             Calculator myCalculator = new Calculator();
             // act           
-            double result = myCalculator.AddNums(2, -3);
+            double result = myCalculator.AddNumbers(2, -3);
             //assert
             double expected = -1;
             Assert.AreEqual(expected, result);
@@ -53,7 +53,7 @@ namespace TDD_Calculator_UnitTests_1
             //arrange            
             Calculator myCalculator = new Calculator();
             // act           
-            double result = myCalculator.AddNums(2, -2);
+            double result = myCalculator.AddNumbers(2, -2);
             //assert
             double expected = 0;
             Assert.AreEqual(expected, result);
@@ -66,7 +66,7 @@ namespace TDD_Calculator_UnitTests_1
             //arrange            
             Calculator myCalculator = new Calculator();
             // act           
-            double result = myCalculator.AddNums(2, 0);
+            double result = myCalculator.AddNumbers(2, 0);
             //assert
             double expected = 2;
             Assert.AreEqual(expected, result);
@@ -79,7 +79,7 @@ namespace TDD_Calculator_UnitTests_1
             //arrange            
             Calculator myCalculator = new Calculator();
             // act           
-            double result = myCalculator.AddNums(-2, -3);
+            double result = myCalculator.AddNumbers(-2, -3);
             //assert
             double expected = -5;
             Assert.AreEqual(expected, result);
@@ -859,18 +859,19 @@ namespace TDD_Calculator_UnitTests_1
 
 
 
-        [TestMethod]
-        public void Test_GetUser_Number2()
-        {
-            //arrange
-            Calculator mc = new Calculator();
-            // act
-            mc.SetTestValues(new Object[] { "abcd", 45 });
-            double result = mc.GetUserNumber("jhjh11");
-            Assert.AreEqual(45, result);
-            Assert.AreEqual(1, mc.GetCurrentIndex());
+        //[TestMethod]
+        //public void Test_GetUser_Number2()
+        //{
+        //    //arrange
+        //    Calculator mc = new Calculator();
+           
+        //    // act
+        //    mc.SetTestValues(new Object[] { "abcd", 45 });
+        //    double result = mc.GetUserNumber("45");
+        //    Assert.AreEqual(45, result);
+        //    Assert.AreEqual(1, mc.GetCurrentIndex());
 
-        } // end Test_GetUser_Number
+        //} // end Test_GetUser_Number2
 
 
 
