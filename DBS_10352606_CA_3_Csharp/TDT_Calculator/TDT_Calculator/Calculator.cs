@@ -170,7 +170,7 @@ namespace TDT_Calculator
             userInput = Console.ReadLine();
             double secondNum = GetUserNumber(userInput);
 
-            // call the AddNums function to add 2 numbers together
+            // call the AddNumbers function to add 2 numbers together
             double result = AddNumbers(firstNum, secondNum);
 
             // Output result of AddNums calculation
@@ -248,7 +248,7 @@ namespace TDT_Calculator
             }
             else
             {
-                // call DivideNumbers method to divide 1st number by 2nd umber
+                // call DivideNumbers method to divide 1st number by 2nd number
                 double result = DivideNumbers(firstNum, secondNum);
                 
                 // Output result of DivideNumbers calculation

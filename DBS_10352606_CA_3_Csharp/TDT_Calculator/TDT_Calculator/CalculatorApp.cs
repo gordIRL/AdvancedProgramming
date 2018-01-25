@@ -87,7 +87,7 @@ namespace TDT_Calculator
                         
                     default:
                         Console.Write("Invalid Selection - Press a key to re-enter selection: ");
-                        Console.ReadLine();
+                        Console.ReadKey();
                         break;
 
                 } // end switch block

@@ -1,5 +1,5 @@
 import unittest
-import math
+#import math
 from calculator import Calculator
 
 class CalculatorTest(unittest.TestCase):
@@ -112,42 +112,5 @@ class CalculatorTest(unittest.TestCase):
         self.assertEqual(0, calculator.log10(-100))
 
 
-
-
-#----------------------------------------------------------------------------------------
-
-
-    def testInitialOutput(self):
-        calculator = Calculator()
-        self.assertEqual(0, calculator.getOutput())
-        
-    def testAddInput(self):
-        calculator = Calculator()
-        calculator.input(1)
-        calculator.input(2)
-        calculator.input(5)
-        calculator.input(9)
-        self.assertEqual(1259, calculator.getOutput())
-        calculator.input('#')
-        self.assertEqual(0, calculator.getOutput())
-
-    def testAddZeroes(self):
-        calculator = Calculator()
-        calculator.input(0)
-        calculator.input(0)
-        calculator.input(0)
-        self.assertEqual(0, calculator.getOutput())
-
-    def testAddition(self):
-        calculator = Calculator()
-        calculator.input(5)
-        calculator.input('+')
-        calculator.input('7')
-        self.assertEqual(12, calculator.getOutput())
-
-    def testExit(self):
-        calculator = Calculator()
-        calculator.input('E')
-        self.assertEqual(0, calculator.getOutput())
 
 unittest.main()
