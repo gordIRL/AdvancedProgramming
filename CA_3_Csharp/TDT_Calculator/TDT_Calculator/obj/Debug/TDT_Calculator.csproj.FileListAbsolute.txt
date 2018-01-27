@@ -12,3 +12,9 @@ C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_3_Csharp\TDT_Calculator\TDT_Ca
 C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_3_Csharp\TDT_Calculator\TDT_Calculator\obj\Debug\TDT_Calculator.csproj.CoreCompileInputs.cache
 C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_3_Csharp\TDT_Calculator\TDT_Calculator\obj\Debug\TDT_Calculator.exe
 C:\Users\Gord\AdvancedProgramming\DBS_10352606_CA_3_Csharp\TDT_Calculator\TDT_Calculator\obj\Debug\TDT_Calculator.pdb
+C:\Users\Gord\Downloads\AdvancedProgramming-master\AdvancedProgramming-master\CA_3_Csharp\TDT_Calculator\TDT_Calculator\bin\Debug\TDT_Calculator.exe.config
+C:\Users\Gord\Downloads\AdvancedProgramming-master\AdvancedProgramming-master\CA_3_Csharp\TDT_Calculator\TDT_Calculator\bin\Debug\TDT_Calculator.exe
+C:\Users\Gord\Downloads\AdvancedProgramming-master\AdvancedProgramming-master\CA_3_Csharp\TDT_Calculator\TDT_Calculator\bin\Debug\TDT_Calculator.pdb
+C:\Users\Gord\Downloads\AdvancedProgramming-master\AdvancedProgramming-master\CA_3_Csharp\TDT_Calculator\TDT_Calculator\obj\Debug\TDT_Calculator.csproj.CoreCompileInputs.cache
+C:\Users\Gord\Downloads\AdvancedProgramming-master\AdvancedProgramming-master\CA_3_Csharp\TDT_Calculator\TDT_Calculator\obj\Debug\TDT_Calculator.exe
+C:\Users\Gord\Downloads\AdvancedProgramming-master\AdvancedProgramming-master\CA_3_Csharp\TDT_Calculator\TDT_Calculator\obj\Debug\TDT_Calculator.pdb
