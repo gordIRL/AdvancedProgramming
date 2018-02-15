@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateHorseBet.cs" />
     <Compile Include="HorseBet.cs" />
+    <Compile Include="ImportDefaultData.cs" />
     <Compile Include="MyFileIO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

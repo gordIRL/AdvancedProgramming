@@ -14,8 +14,6 @@ namespace HotTipster
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World");            
-
             // FileName & Location fo file to write out to
             string fullPathFileName = @"C:\dbs\my1stBinaryFile.bin";
 
@@ -30,72 +28,30 @@ namespace HotTipster
             MyFileIO.CheckFileExists("testBinary1");            
             MyFileIO.CreateFileStream("testBinary1");
 
-            HorseBet horseBet1 = new HorseBet();
-            HorseBet horseBet2 = new HorseBet("Sandown", new DateTime(2017, 08, 07), 25.00m, false);
+          
 
-            Console.WriteLine(horseBet1.ToString());
-            Console.WriteLine(horseBet2.ToString());
 
-            List<HorseBet> HorseBetList = new List<HorseBet>();
-            //HotTipsterTestDataFULLVERSION
-            string testDataPath = @"C:\dbs\HotTipsterTestDataFULLVERSION.txt";
 
-            // open file with write access via FileStream
-            FileStream input = new FileStream(testDataPath, FileMode.OpenOrCreate, FileAccess.Read);
-            Console.WriteLine("\n\nInput stream created.");
 
-            // Create a TextReader (Reader)
-            //BinaryFormatter reader = new BinaryFormatter();
+            // Import original data into List of HorseBet objects by calling ImportData();
+            List<HorseBet> myNewList = ImportDefaultData.ImportData();
 
-            string allText;
 
-            using (StreamReader streamReader = new StreamReader(testDataPath))
+            myNewList.Add(CreateHorseBet.Method1());
+
+
+
+
+
+
+
+
+
+
+            // Display complete HorseBet List
+            foreach (HorseBet hb in myNewList)
             {
-                allText =  streamReader.ReadToEnd();
-            }
-
-            
-            allText = allText.Replace(" ", String.Empty);
-
-            string myRegexExpression = @"([\w]+)|";                   // Name   {2,}
-            myRegexExpression += @"(\([\d]{4},[\d]{2},[\d]{2}\))|";   // Date
-            myRegexExpression += @"([\d]*\.[\d]*[m])|";              // Money amount   @"([\d]*\.[\d]*[m])|"; 
-            myRegexExpression += @"(true|false)";                    // true or false
-
-
-
-            //MatchCollection matches = Regex.Matches(allText, myRegexExpression, RegexOptions.Multiline);  //)     
-            //foreach (Match match in matches)
-            //{
-            //    Console.WriteLine(match + "----");
-            //}
-
-
-
-            Regex reEngine = new Regex(myRegexExpression);
-            Match regExMatch = reEngine.Match(allText);
-
-           
-
-           
-            while (regExMatch.Success)
-            {
-                Console.WriteLine("Course: {0}", regExMatch);
-
-                regExMatch = regExMatch.NextMatch();
-                Console.WriteLine("Date: {0}", regExMatch);
-
-                regExMatch = regExMatch.NextMatch();
-                string fullMoney = regExMatch.ToString();
-
-                regExMatch = regExMatch.NextMatch();
-                fullMoney += regExMatch.ToString();
-                Console.WriteLine("Money: {0}", fullMoney);
-
-                regExMatch = regExMatch.NextMatch();
-                Console.WriteLine("Bool: {0}", regExMatch);
-
-                regExMatch = regExMatch.NextMatch();
+                Console.WriteLine(hb.ToString());
             }
 
 
@@ -112,22 +68,14 @@ namespace HotTipster
 
 
 
-            //int counter = (int)input.Length - 1;
-
-            //while (input.Position < input.Length)
-            //{
-            //    RecordSerializable tempRecord = new RecordSerializable();
-            //    tempRecord = (RecordSerializable)reader.Deserialize(input);
-            //    Console.WriteLine(tempRecord.Name + " " + tempRecord.Age);
-            //}
 
 
 
 
 
-            // Close the FileStream
-            input.Close();     // close FileStream
-            Console.WriteLine("Filestream Closed.");
+
+
+
 
 
 
@@ -238,9 +186,9 @@ namespace HotTipster
             //    (RecordSerializable)reader.Deserialize(input);
             //Console.WriteLine("Read in & deserailized - Completed");
 
-            // Close the FileStream
-            input.Close();     // close FileStream
-            Console.WriteLine("Filestream Closed.");
+            //// Close the FileStream
+            //input.Close();     // close FileStream
+            //Console.WriteLine("Filestream Closed.");
 
             //Console.WriteLine(string.Format("\n\n{0}: {1}",
             //    recordRead1.Name, recordRead1.Age));
