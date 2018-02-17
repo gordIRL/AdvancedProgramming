@@ -93,12 +93,7 @@ namespace HotTipster
 
                 // Add tempory HorseBet object to HorseBet List
                 HorseBetList.Add(tempHorseBet);
-            }
-
-            //foreach (HorseBet hb in HorseBetList)
-            //{
-            //    Console.WriteLine(hb.ToString());
-            //}
+            }           
 
             // Close the FileStream
             input.Close();     // close FileStream
@@ -112,18 +107,7 @@ namespace HotTipster
 
 
 
-
-        //int counter = (int)input.Length - 1;
-
-        //while (input.Position < input.Length)
-        //{
-        //    RecordSerializable tempRecord = new RecordSerializable();
-        //    tempRecord = (RecordSerializable)reader.Deserialize(input);
-        //    Console.WriteLine(tempRecord.Name + " " + tempRecord.Age);
-        //}
-
-
-
+        
 
 
 

@@ -12,11 +12,11 @@ namespace HotTipster
 {
     class Program
     {
+        public static List<HorseBet> ListOfHorseBets = new List<HorseBet>();
+
+
         static void Main(string[] args)
         {
-            // FileName & Location fo file to write out to
-            string fullPathFileName = @"C:\dbs\my1stBinaryFile.bin";
-
 
             //bool userFileExists =  MyFileIO.CheckFileExists("testBinary1");
             //Console.WriteLine("User file exists: {0}", userFileExists);
@@ -25,182 +25,133 @@ namespace HotTipster
             //Console.WriteLine("File created: {0}", isFileCreated);
 
 
-            MyFileIO.CheckFileExists("testBinary1");            
+            MyFileIO.CheckFileExists("testBinary1");
             MyFileIO.CreateFileStream("testBinary1");
-
-          
-
-
 
 
             // Import original data into List of HorseBet objects by calling ImportData();
-            List<HorseBet> myNewList = ImportDefaultData.ImportData();
+            //List<HorseBet> ListOfHorseBets = ImportDefaultData.ImportData();
+            ListOfHorseBets = ImportDefaultData.ImportData();
 
-
-            myNewList.Add(CreateHorseBet.Method1());
-
-
-
-
-
-
-
-
-
-
-            // Display complete HorseBet List
-            foreach (HorseBet hb in myNewList)
+            // Display complete / original HorseBet List
+            foreach (HorseBet hb in ListOfHorseBets)
             {
                 Console.WriteLine(hb.ToString());
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             Console.WriteLine("\n\n\n\n");
-
-            // open file with write access via FileStream
-            FileStream output =  new FileStream(fullPathFileName, FileMode.OpenOrCreate, FileAccess.Write );
-            Console.WriteLine("Output stream created.");
+            Console.ReadLine();
 
 
-            // Create a record to serialize
-            RecordSerializable recordWrite1 = new RecordSerializable();
-            recordWrite1.Name = "Gord";
-            recordWrite1.Age = 46;
-            Console.WriteLine("1st Record Object created.");
 
+            //// Create a HorseBet and add to ListOfHorseBets
+            //ListOfHorseBets.Add(CreateHorseBet.Method1());
+
+
+
+            //// Write out ListOfHorseBets To Binary file
+            //MyFileIO.WriteToBinaryFile(ListOfHorseBets);
+            //// Creat in ListOfHorseBets from Binary file
+            //MyFileIO.ReadFromBinaryFile();
+
+
+
+
+
+            Console.ReadLine();
+            Console.WriteLine("Report - Win / Loss Breakdown by Year:");
+
+            // Call GetAnnualResult method using ListOfHorseBets list & Year & win/lose bool
+            Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2017, true));
+            Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2017, false));
+
+            Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2016, true));
+            Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2016, false));
+
+            // Call GetMostPopularRaceCourse method using ListOfHorseBets
+            //Console.WriteLine(ReportingMethods.GetMostPopularRaceCourse());
+
+            //------------------------------------------------------------------------------------
+
+
+
+            //Provide a report that shows the most popular race course for bets.
+            //The most popular race course is the one with the most bets placed on it.
+
+
+            // List where BOOL RaceWasWon = true
+            var winningList =
+                from HorseBet in ListOfHorseBets
+                where HorseBet.RaceWasWon == true
+                select (HorseBet);
+                      
+
+            // Display number of winning racecourses
+            int noOfEntrriesInWinningList = winningList.Count();
+            Console.WriteLine("\n\n{0} RaceCourses in winning list VS actual: {0}", 18, noOfEntrriesInWinningList);
+            Console.ReadLine();
+
+
+   //  --------------------------------------------------------------------------------------------
+
+       
+
+
+            // List of totals for each RaceCourse (ignores wins/losses status)
+            var noOfBetsPerRaceCourse =
+                from HorseBet in ListOfHorseBets
+                group HorseBet by HorseBet.RaceCourse into myNewGroup
+                //    orderby r.TotalNoOfBetPerRaceCOurse descending
+
+                select new
+                {
+                    raceCourse = myNewGroup.Key,
+                    totalBetsPerCourse = myNewGroup.Count()                  
+                };
+
+
+            foreach (var item in noOfBetsPerRaceCourse)
+            {
+                Console.WriteLine(string.Format("::::::::::::::::::::::{0}: {1}",
+                    item.raceCourse, item.totalBetsPerCourse));
+            }
            
-            // Create a record to serialize
-            RecordSerializable recordWrite2 = new RecordSerializable();
-            recordWrite2.Name = "Alan";
-            recordWrite2.Age = 43;
-            Console.WriteLine("2nd Record Object created.");
+            
+
+            
+            // get the single highest amount of bets for any racecourse in the list
+            var maxSingleAmountOfBetsOfAnyRaceCourse =
+                (from rrr in noOfBetsPerRaceCourse
+
+                 select (rrr.totalBetsPerCourse)).Min();     // select MAX or MIN here
+
+            
+            // Assign maxSingleAmountOfBetsOfAnyRaceCourse to integer max
+            int maxSingleAmountInt = maxSingleAmountOfBetsOfAnyRaceCourse;
+            Console.WriteLine("Max: {0}", maxSingleAmountOfBetsOfAnyRaceCourse.ToString());               
+           
 
 
-            // Create a BinaryFormatter
-            BinaryFormatter formatter = new BinaryFormatter();
-            Console.WriteLine("BinaryFormatter created.");
+            // Use MAX number THEN return query based on that max number  // (use multiple MINIMUM entries to verify
+            var mostPopularRaceCourseList =
+                from result in noOfBetsPerRaceCourse
+                where result.totalBetsPerCourse == maxSingleAmountInt
+                select result;
 
-
-            // write Record to FileStream ( serialize object ) 
-            formatter.Serialize(output, recordWrite1);
-            Console.WriteLine("1st Record object has been serialized.");
-
-            // write Record to FileStream ( serialize object ) 
-            formatter.Serialize(output, recordWrite2);
-            Console.WriteLine("2nd Record object has been serialized.");
-
-            // Close the FileStream
-            output.Close();     // close FileStream
-            Console.WriteLine("Filestream Closed.");
-
-
-
-
-
-
-            //// open file with write access via FileStream
-            //FileStream input = new FileStream(fullPathFileName, FileMode.OpenOrCreate, FileAccess.Read);
-            //Console.WriteLine("\n\nInput stream created.");
-
-            //// Create a BinaryFormatter (Reader)
-            //BinaryFormatter reader = new BinaryFormatter();
-            //Console.WriteLine("BinaryFormatter (Reader) created.");
-
-
-            //int counter = (int)input.Length -1;
-
-            //while(input.Position < input.Length)
-            //{
-            //    RecordSerializable tempRecord = new RecordSerializable();
-            //    tempRecord =   (RecordSerializable)reader.Deserialize(input);
-            //    Console.WriteLine(tempRecord.Name + " " + tempRecord.Age);
-            //}
+            
+            // Display RacesCourses with most bets
+            Console.WriteLine("Results of racecourse query");
+            foreach (var item in mostPopularRaceCourseList)
+            {
+                Console.WriteLine(item);
+            }
+            
+            
             
 
 
 
-            ////  Read in & 1st deserailized record
-            //RecordSerializable recordRead1 = 
-            //    (RecordSerializable)reader.Deserialize(input);
-            //Console.WriteLine("Read in & deserailized - Completed");
 
-            ////  Read in & 2nd deserailized record
-            //RecordSerializable recordRead2 =
-            //    (RecordSerializable)reader.Deserialize(input);
-            //Console.WriteLine("Read in & deserailized - Completed");
-
-            //// Should produce error !!             It DOES !!
-            ////  Read in & 3rd NON-EXISTENT deserailized record
-            //RecordSerializable recordRead3 =
-            //    (RecordSerializable)reader.Deserialize(input);
-            //Console.WriteLine("Read in & deserailized - Completed");
-
-            //// Close the FileStream
-            //input.Close();     // close FileStream
-            //Console.WriteLine("Filestream Closed.");
-
-            //Console.WriteLine(string.Format("\n\n{0}: {1}",
-            //    recordRead1.Name, recordRead1.Age));
-            //Console.WriteLine(string.Format("{0}: {1}\n",
-            //    recordRead2.Name, recordRead2.Age));
-
-
-
-            Console.WriteLine(Utility.AddTwoNums(5, 3));
-
-
-
+            //Console.WriteLine(Utility.AddTwoNums(5, 3));
         }// end Main
     }// end class Program
 }// end Namespace

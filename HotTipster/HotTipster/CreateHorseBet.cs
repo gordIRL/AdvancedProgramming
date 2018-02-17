@@ -10,16 +10,6 @@ namespace HotTipster
     {
         public static HorseBet Method1()
         {
-            // Create HorseBet object
-            //HorseBet horseBet1 = new HorseBet("Vader", new DateTime(2020, 08, 07), 50.00m, true);
-
-            //// Display HorseBet object
-            //Console.WriteLine("-------------------------------------");
-            //Console.WriteLine(horseBet1.ToString());          
-            //Console.WriteLine("-------------------------------------");
-            //Console.ReadLine();
-
-
             // User inputs RaceCourse Name
             Console.Write("Please enter RaceCourse Name: ");
             string tempRaceCourse =  Console.ReadLine();
@@ -103,13 +93,6 @@ namespace HotTipster
             Console.WriteLine("{0}  {1}  {2}  {3}",
                 tempRaceCourse, tempRaceDate, tempBalanceChange, tempRaceWasWon);
             Console.ReadLine();
-
-
-
-
-
-
-
             return horseBet1;
         }// end Method1
     }// end CreateHorseBet
