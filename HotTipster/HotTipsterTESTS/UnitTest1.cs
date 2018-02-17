@@ -155,6 +155,26 @@ namespace HotTipsterTESTS
 
 
 
+        //[TestMethod]
+        //public void SwitchTest()
+        //{
+        //    //arrange          
+        //   SwitchTest
+        //    // act         
+        //    string result = "Sandown  07/08/2017  25.00  False";
+
+        //    //assert
+        //    string expected = horseBetTest.ToString();
+        //    Assert.AreEqual(expected, result);
+
+        //}//end TestHorseBetToString
+
+
+
+
+
+
+
 
 
 

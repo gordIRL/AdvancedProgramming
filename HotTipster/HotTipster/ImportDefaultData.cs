@@ -9,6 +9,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 
+
+
 namespace HotTipster
 {
     public static class ImportDefaultData
@@ -24,7 +26,7 @@ namespace HotTipster
 
             // Open file with write access via FileStream
             FileStream input = new FileStream(testDataPath, FileMode.OpenOrCreate, FileAccess.Read);
-            Console.WriteLine("\n\nInput stream created.");
+            //Console.WriteLine("\n\nInput stream created.");
 
             
             // Read in data from file
@@ -97,21 +99,12 @@ namespace HotTipster
 
             // Close the FileStream
             input.Close();     // close FileStream
-            Console.WriteLine("Filestream Closed.");
+            //Console.WriteLine("Filestream Closed.");
 
 
             // Return complete list of Horsebets
             return HorseBetList;
-        }
-
-
-
-
-        
-
-
-
-
+        }// end method ImportData
 
 
     }// end ImportDefaultData

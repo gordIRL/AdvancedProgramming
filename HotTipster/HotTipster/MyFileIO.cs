@@ -48,6 +48,15 @@ namespace HotTipster
 
 
 
+        
+
+
+
+
+        
+
+
+
 
 
 
@@ -106,12 +115,17 @@ namespace HotTipster
             // Set up counter that is the length of the binary file
             int counter = (int)input.Length - 1;
 
+            // Create a list to store HorseBets in
+            List<HorseBet> HorseBetList = new List<HorseBet>();
+
             // Read in data until end of binary file is detected
             while (input.Position < input.Length)
             {
                 HorseBet tempHorseBet = new HorseBet();
                 tempHorseBet = (HorseBet)reader.Deserialize(input);
+                HorseBetList.Add(tempHorseBet);
                 Console.WriteLine(tempHorseBet.ToString());
+                
             }// end while
 
 
