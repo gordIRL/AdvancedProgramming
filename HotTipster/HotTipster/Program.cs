@@ -53,11 +53,17 @@ namespace HotTipster
             //// Creat in ListOfHorseBets from Binary file
             //MyFileIO.ReadFromBinaryFile();
 
-
-
+            // Call GetMostPopularRaceCourse method using ListOfHorseBets
+            //Console.WriteLine(ReportingMethods.GetMostPopularRaceCourse());
 
 
             Console.ReadLine();
+            Console.Clear();
+
+            //--------------------------------------------------------------------------------------------
+            //3.    Provide a report that lists years, total won and total lost, 
+            //      e.g., the output will look like the following:
+
             Console.WriteLine("Report - Win / Loss Breakdown by Year:");
 
             // Call GetAnnualResult method using ListOfHorseBets list & Year & win/lose bool
@@ -67,90 +73,13 @@ namespace HotTipster
             Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2016, true));
             Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2016, false));
 
-            // Call GetMostPopularRaceCourse method using ListOfHorseBets
-            //Console.WriteLine(ReportingMethods.GetMostPopularRaceCourse());
-
-            //------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
             Console.ReadLine();
-            //------------------------------------------------------------------------------------
+            Console.Clear();
+ //----------------------------------------------------------------------------------------------
 
 
-            // DisplayAllBetsInDateOrder            
-            var AllBetsInDateOrderList =
-                from HorseBet in ListOfHorseBets
-                orderby HorseBet.RaceDate   // default oldest to newest  // descending =  newest to oldest          
-                select (HorseBet);
-
-            foreach (var HorseBet in AllBetsInDateOrderList)
-            {
-                Console.WriteLine(HorseBet);
-            }
-
-            Console.ReadLine();
-            //  --------------------------------------------------------------------------------------------
-
-
-            // Provide another report that displays the highest amount won 
-            // for a bet laid and the most lost for a bet laid.
-
-            // Select whether Winning Or Losing race is required
-            bool wonRace = false;
-
-            // Find the largest amount won or lost
-            var highestAmountWonOrLostOnARace =
-                (from HorseBet in ListOfHorseBets
-                 where HorseBet.RaceWasWon == wonRace
-                 select HorseBet.BalanceChange).Max();
-                      
-            // Find race(s) associated with largest amount
-            var largestWinningOrLosingRace =
-                from HorseBet in ListOfHorseBets
-                where HorseBet.BalanceChange == highestAmountWonOrLostOnARace
-                select HorseBet;
-
-            // Display largest amount won or lost
-            Console.WriteLine("Highest Amount {0} on a race: {1}",
-                wonRace ? "WON" : "LOST" ,
-                highestAmountWonOrLostOnARace.ToString());
-            
-            // Display racecourse associated with largest amount
-            foreach (var HorseBet in largestWinningOrLosingRace)
-            {
-                Console.WriteLine("At RaceCourse: {0}", HorseBet);
-            }
-            Console.ReadLine();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //  --------------------------------------------------------------------------------------------
-
-
-            //Provide a report that shows the most popular race course for bets.
-            //The most popular race course is the one with the most bets placed on it.
+            // 4.   Provide a report that shows the most popular race course for bets.
+            //      The most popular race course is the one with the most bets placed on it.
 
 
 
@@ -166,21 +95,20 @@ namespace HotTipster
                     totalBetsPerCourse = myNewGroup.Count()                  
                 };
 
-
+            Console.WriteLine("No of bets placed at each racecourse:\n\n");
             foreach (var item in noOfBetsPerRaceCourse)
             {
-                Console.WriteLine(string.Format("::::::::::::::::::::::{0}: {1}",
+                Console.WriteLine(string.Format("{0}: {1}",
                     item.raceCourse, item.totalBetsPerCourse));
             }
-           
-            
+                      
 
             
             // get the single highest amount of bets for any racecourse in the list
             var maxSingleAmountOfBetsOfAnyRaceCourse =
                 (from rrr in noOfBetsPerRaceCourse
-
                  select (rrr.totalBetsPerCourse)).Max();     // select MAX or MIN here
+
 
             
             // Assign maxSingleAmountOfBetsOfAnyRaceCourse to integer max
@@ -202,9 +130,98 @@ namespace HotTipster
             {
                 Console.WriteLine(item);
             }
-            
-            
-            
+            Console.ReadLine();
+            Console.Clear();
+            //---------------------------------------------------------------------------------------
+
+
+
+
+            //  5.  Provide a report that shows the bets in date order.
+
+            // DisplayAllBetsInDateOrder            
+            var AllBetsInDateOrderList =
+                from HorseBet in ListOfHorseBets
+                orderby HorseBet.RaceDate   // default oldest to newest  // descending =  newest to oldest          
+                select (HorseBet);
+
+            Console.WriteLine("Display all bets in order:\n\n");
+
+            foreach (var HorseBet in AllBetsInDateOrderList)
+            {
+                Console.WriteLine(HorseBet);
+            }
+            Console.ReadLine();
+            Console.Clear();
+
+            //  --------------------------------------------------------------------------------------------
+
+
+            // 6.   Provide another report that displays the highest amount won 
+            //      for a bet laid and the most lost for a bet laid.
+
+            // Select whether Winning Or Losing race is required
+            bool wonRace = true;
+
+            // Find the largest amount won or lost
+            var highestAmountWonOrLostOnARace =
+                (from HorseBet in ListOfHorseBets
+                 where HorseBet.RaceWasWon == wonRace
+                 select HorseBet.BalanceChange).Max();
+
+            // Find race(s) associated with largest amount
+            var largestWinningOrLosingRace =
+                from HorseBet in ListOfHorseBets
+                where HorseBet.BalanceChange == highestAmountWonOrLostOnARace
+                select HorseBet;
+
+            // Display largest amount won or lost
+            Console.WriteLine("Highest Amount {0} on a race: {1}",
+                wonRace ? "WON" : "LOST",
+                highestAmountWonOrLostOnARace.ToString());
+
+            // Display racecourse associated with largest amount
+            foreach (var HorseBet in largestWinningOrLosingRace)
+            {
+                Console.WriteLine("At RaceCourse: {0}", HorseBet);
+            }
+            Console.ReadLine();
+            Console.Clear();
+
+
+
+            //------------------------------------------------------------------------------------
+
+            //7.Provide a report to indicate how successful HotTipster is at horse betting.
+            //This should display the total number of races 
+            //alongside the number of races that HotTipster has won a bet on.
+
+
+            // Total number of bets places
+            int totalNoOfRaces = ListOfHorseBets.Count();
+            Console.WriteLine("Total number of races: {0}", totalNoOfRaces);
+
+            // Total number of winning bets
+            var noOfWinningRaces =
+                (
+                from HorseBet in ListOfHorseBets
+                where HorseBet.RaceWasWon == true
+                select HorseBet
+                ).Count();
+            Console.WriteLine("Total number of winning bets: {0}",
+                noOfWinningRaces);
+
+            decimal winningRatio = (noOfWinningRaces * 100) / totalNoOfRaces;
+            Console.WriteLine("Win / Lose Ratio: {0}%", winningRatio);
+
+            Console.ReadLine();
+            Console.Clear();
+
+
+            //------------------------------------------------------------------------------------
+
+
+
 
 
 
