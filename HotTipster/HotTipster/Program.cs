@@ -33,13 +33,13 @@ namespace HotTipster
             //List<HorseBet> ListOfHorseBets = ImportDefaultData.ImportData();
             ListOfHorseBets = ImportDefaultData.ImportData();
 
-            // Display complete / original HorseBet List
-            foreach (HorseBet hb in ListOfHorseBets)
-            {
-                Console.WriteLine(hb.ToString());
-            }
-            Console.WriteLine("\n\n\n\n");
-            Console.ReadLine();
+            //// KEEP - Display complete / original HorseBet List
+            //foreach (HorseBet hb in ListOfHorseBets)
+            //{
+            //    Console.WriteLine(hb.ToString());
+            //}
+            //Console.WriteLine("\n\n\n\n");
+            //Console.ReadLine();
 
 
 
@@ -74,26 +74,84 @@ namespace HotTipster
 
 
 
-            //Provide a report that shows the most popular race course for bets.
-            //The most popular race course is the one with the most bets placed on it.
 
 
-            // List where BOOL RaceWasWon = true
-            var winningList =
+
+
+
+
+
+            Console.ReadLine();
+            //------------------------------------------------------------------------------------
+
+
+            // DisplayAllBetsInDateOrder            
+            var AllBetsInDateOrderList =
                 from HorseBet in ListOfHorseBets
-                where HorseBet.RaceWasWon == true
+                orderby HorseBet.RaceDate   // default oldest to newest  // descending =  newest to oldest          
                 select (HorseBet);
-                      
 
-            // Display number of winning racecourses
-            int noOfEntrriesInWinningList = winningList.Count();
-            Console.WriteLine("\n\n{0} RaceCourses in winning list VS actual: {0}", 18, noOfEntrriesInWinningList);
+            foreach (var HorseBet in AllBetsInDateOrderList)
+            {
+                Console.WriteLine(HorseBet);
+            }
+
+            Console.ReadLine();
+            //  --------------------------------------------------------------------------------------------
+
+
+            // Provide another report that displays the highest amount won 
+            // for a bet laid and the most lost for a bet laid.
+
+            // Select whether Winning Or Losing race is required
+            bool wonRace = false;
+
+            // Find the largest amount won or lost
+            var highestAmountWonOrLostOnARace =
+                (from HorseBet in ListOfHorseBets
+                 where HorseBet.RaceWasWon == wonRace
+                 select HorseBet.BalanceChange).Max();
+                      
+            // Find race(s) associated with largest amount
+            var largestWinningOrLosingRace =
+                from HorseBet in ListOfHorseBets
+                where HorseBet.BalanceChange == highestAmountWonOrLostOnARace
+                select HorseBet;
+
+            // Display largest amount won or lost
+            Console.WriteLine("Highest Amount {0} on a race: {1}",
+                wonRace ? "WON" : "LOST" ,
+                highestAmountWonOrLostOnARace.ToString());
+            
+            // Display racecourse associated with largest amount
+            foreach (var HorseBet in largestWinningOrLosingRace)
+            {
+                Console.WriteLine("At RaceCourse: {0}", HorseBet);
+            }
             Console.ReadLine();
 
 
-   //  --------------------------------------------------------------------------------------------
 
-       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //  --------------------------------------------------------------------------------------------
+
+
+            //Provide a report that shows the most popular race course for bets.
+            //The most popular race course is the one with the most bets placed on it.
+
 
 
             // List of totals for each RaceCourse (ignores wins/losses status)
@@ -122,7 +180,7 @@ namespace HotTipster
             var maxSingleAmountOfBetsOfAnyRaceCourse =
                 (from rrr in noOfBetsPerRaceCourse
 
-                 select (rrr.totalBetsPerCourse)).Min();     // select MAX or MIN here
+                 select (rrr.totalBetsPerCourse)).Max();     // select MAX or MIN here
 
             
             // Assign maxSingleAmountOfBetsOfAnyRaceCourse to integer max
