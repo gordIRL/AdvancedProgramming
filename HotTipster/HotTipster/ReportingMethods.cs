@@ -121,6 +121,12 @@ namespace HotTipster
 
         public static string HighestAmountWonOrLostOnARace(List<HorseBet> ListOfHorseBets, bool wonRace)
         {
+            string displayResultString = string.Empty;
+
+            try
+            {
+                
+
             // Find the largest amount won or lost
             var highestAmountWonOrLostOnARace =
                 (from HorseBet in ListOfHorseBets
@@ -139,7 +145,7 @@ namespace HotTipster
 
 
             // Create string to return result
-            string displayResultString = string.Format("Highest Amount {0} on a race: {1}",
+            displayResultString = string.Format("Highest Amount {0} on a race: {1}",
                 wonRace ? "WON" : "LOST", highestAmountWonOrLostOnARace.ToString());
 
 
@@ -147,9 +153,15 @@ namespace HotTipster
             foreach (var HorseBet in largestWinningOrLosingRace)
             {
                 //Console.WriteLine("At RaceCourse: {0}", HorseBet);  // display for testing only
-                displayResultString += string.Format("\nRaceCourse: {0}\nDate: {1}", 
+                displayResultString += string.Format("\nRaceCourse: {0}\nDate: {1}",
                     HorseBet.RaceCourse, HorseBet.RaceDate.ToShortDateString());
             }
+        }// end try
+             catch
+            {
+                displayResultString = "Unknown - No data available to query.";
+            }
+
             return displayResultString;
         }// end HighestAmountWonOrLostOnARace
 

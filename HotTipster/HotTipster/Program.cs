@@ -12,7 +12,9 @@ using System.Text.RegularExpressions;
 namespace HotTipster
 {
     class Program
-    {       
+    {
+        
+
         static void Main(string[] args)
         {
             bool runProgram = true;            
@@ -26,3 +28,10 @@ namespace HotTipster
         }
     }
 }
+
+
+
+
+//  Issue with   Option 6)  Save NewAdditionsToHorseBetList to BinaryFile
+
+    // Issue with Annual Reports - only works for 2016 & 2017 - hard-coded!!

@@ -48,7 +48,6 @@
     <Compile Include="MyFileIO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecordSerializable.cs" />
     <Compile Include="ReportingMethods.cs" />
     <Compile Include="SwitchLoop.cs" />
     <Compile Include="Utility.cs" />

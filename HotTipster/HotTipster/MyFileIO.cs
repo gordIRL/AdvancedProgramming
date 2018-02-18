@@ -12,7 +12,7 @@ namespace HotTipster
 {
     public static class MyFileIO
     {
-        public static string fullPathFileName = @"C:\dbs\my1stBinaryFile.bin";
+        public static string fullPathForBinaryFile = @"C:\dbs\HotTipsterData.bin";
 
 
 
@@ -46,13 +46,6 @@ namespace HotTipster
             }
         }// end CreateFileStream
 
-
-
-        
-
-
-
-
         
 
 
@@ -60,14 +53,18 @@ namespace HotTipster
 
 
 
-        public static void WriteToBinaryFile(List<HorseBet> horseBetList)
+        public static void WriteToBinaryFile(List<HorseBet> horseBetListLocal)
         {
-            // FileName & Location fo file to write out to
-            
+            // FileName & Location fo file to write out to            
+
+            if (!File.Exists(fullPathForBinaryFile))
+            {
+                File.Create(fullPathForBinaryFile);
+            }
 
 
             // open file with write access via FileStream
-            FileStream output = new FileStream(fullPathFileName, FileMode.OpenOrCreate, FileAccess.Write);
+            FileStream output = new FileStream(fullPathForBinaryFile, FileMode.Append, FileAccess.Write);  // FileMode.OpenOrCreate
             Console.WriteLine("IO Stream created.");
 
 
@@ -76,11 +73,11 @@ namespace HotTipster
             Console.WriteLine("BinaryFormatter created.");
 
 
-            // Iterate through HorseBet List & write out to binary file
+            // Iterate through NewAdditionsToHorseBetList & write out to binary file
             int counterWriteToBinary = 0;
-            foreach (HorseBet hb in horseBetList)
-            {
-                formatter.Serialize(output, hb);
+            foreach (HorseBet hb in horseBetListLocal)
+            {                
+                formatter.Serialize(output, hb);   
                 Console.WriteLine("Horsebet no: {0} written to file  -  {1}",
                    counterWriteToBinary, hb.ToString());
                 counterWriteToBinary++;
@@ -98,52 +95,62 @@ namespace HotTipster
 
 
 
-        public static void ReadFromBinaryFile()
+        public static List<HorseBet> ReadFromBinaryFile()
         {
-            Console.WriteLine("Read in from Binary file");
+            Console.WriteLine("Read data from Binary file");
             Console.ReadLine();
 
             // open file with write access via FileStream
-            FileStream input = new FileStream(fullPathFileName, FileMode.OpenOrCreate, FileAccess.Read);
-            Console.WriteLine("\n\nInput stream created.");
+            FileStream input = new FileStream(fullPathForBinaryFile, FileMode.OpenOrCreate, FileAccess.Read);
+            //Console.WriteLine("\n\nInput stream created.");  // use for testing
 
             // Create a BinaryFormatter (Reader)
             BinaryFormatter reader = new BinaryFormatter();
-            Console.WriteLine("BinaryFormatter (Reader) created.");
+            //Console.WriteLine("BinaryFormatter (Reader) created.");  // use for testing
 
+
+            // Alert user if data file is empty
+            if(input.Length == 0)
+            {
+                Console.WriteLine("\n\nNo data currently in file.\n\n");
+            }
 
             // Set up counter that is the length of the binary file
-            int counter = (int)input.Length - 1;
+            //int counter = (int)input.Length - 1;//int counter = (int)input.Length - 1;
 
             // Create a list to store HorseBets in
-            List<HorseBet> HorseBetList = new List<HorseBet>();
+            List<HorseBet> tempHorseBetList = new List<HorseBet>();
 
-            // Read in data until end of binary file is detected
+            // Read in data until end of binary file is detected & add to tempHorseBetList
+            
             while (input.Position < input.Length)
             {
                 HorseBet tempHorseBet = new HorseBet();
                 tempHorseBet = (HorseBet)reader.Deserialize(input);
-                HorseBetList.Add(tempHorseBet);
-                Console.WriteLine(tempHorseBet.ToString());
-                
+                tempHorseBetList.Add(tempHorseBet);  
+                Console.WriteLine(tempHorseBet.ToString());                
             }// end while
 
 
             // Close the FileStream
             input.Close();     // close FileStream
-            Console.WriteLine("Filestream Closed.");
+            //Console.WriteLine("Filestream Closed.");   // use for testing
+
+            // return HorseBet list
+            return tempHorseBetList;
+
         }// end ReadFromBinaryFile
 
 
+        public static void DeleteBinaryFile()
+        {
+            if (File.Exists(fullPathForBinaryFile))
+            {
+                File.Delete(fullPathForBinaryFile);
+            }
+        }// end DeleteBinaryFile
 
 
 
-
-
-
-
-
-
-
-    }// end class
+    }// end class MyFileIO
 }// end Namespace

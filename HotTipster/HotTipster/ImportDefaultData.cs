@@ -24,6 +24,9 @@ namespace HotTipster
             string testDataPath = @"C:\dbs\HotTipsterTestDataFULLVERSION.txt";  // 
 
 
+            
+
+
             // Open file with write access via FileStream
             FileStream input = new FileStream(testDataPath, FileMode.OpenOrCreate, FileAccess.Read);
             //Console.WriteLine("\n\nInput stream created.");

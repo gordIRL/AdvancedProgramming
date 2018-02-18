@@ -93,7 +93,11 @@ namespace HotTipster
             Console.WriteLine("{0}  {1}  {2}  {3}",
                 tempRaceCourse, tempRaceDate, tempBalanceChange, tempRaceWasWon);
             Console.ReadLine();
+            
+            
+            // return newly created HorseBet
             return horseBet1;
+
         }// end Method1
     }// end CreateHorseBet
 }// end Namespace
