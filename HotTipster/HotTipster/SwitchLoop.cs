@@ -148,17 +148,26 @@ namespace HotTipster
                     {
                         Console.WriteLine("\nOption 6)  Save NewAdditionsToHorseBetList to BinaryFile\n\n");
 
-                        // Write out ListOfHorseBets To Binary file                    
-                        MyFileIO.WriteToBinaryFile(NewAdditionsToHorseBetList);
-                        Console.WriteLine("NewAdditions have been written to BinaryFile");
+                        if(NewAdditionsToHorseBetList.Count > 0)
+                            {
+                            // Write out ListOfHorseBets To Binary file                    
+                            MyFileIO.WriteToBinaryFile(NewAdditionsToHorseBetList);
+                            Console.WriteLine("NewAdditions have been written to BinaryFile");
 
-                        // Clear NewAdditions list and alert user
-                        NewAdditionsToHorseBetList.Clear();
-                        Console.WriteLine("NewAdditions is now empty.");
-                    }
+                            // Clear NewAdditions list and alert user
+                            NewAdditionsToHorseBetList.Clear();
+                            Console.WriteLine("NewAdditions is now empty.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("There is no unsaved data to save.");
+                        }
+                    }// end try
                     catch
                     {
-                        Console.WriteLine("Error - Option 6 - Save NewAdditionsToHorseBetList to BinaryFile.");
+                        Console.WriteLine("Error - Option 6 - Save NewAdditionsToHorseBetList to BinaryFile - DATA NOT SAVED");
+                        Console.WriteLine("\nFile.Delete error “The process cannot access the file because it is being used by another process”");
+                        Console.WriteLine("Occurs after deleting the binary file & then trying to save to it again.");
                     }
                     Utility.WaitForUserAndClearScreen();
                     break;
@@ -187,13 +196,16 @@ namespace HotTipster
                     {
                         Console.WriteLine("\nOption 8)  Report - Win / Loss Breakdown by Year:\n\n");
 
-                        //// Call GetAnnualResult method using ListOfHorseBets list & Year & win/lose bool
-                        Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2017, true));
-                        Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2017, false));
+                        // Create a list of type int to store the result of ListOfYears query
+                        List<int> ListOfYears = ReportingMethods.ListOfYears(ListOfHorseBets);
 
-                        Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2016, true));
-                        Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, 2016, false));
-                    }
+                        // Iterate through ListOfYears & for each year, Call GetAnnualResult method on ListOfHorseBets & win/lose bool
+                        foreach (var bettingYear in ListOfYears)
+                        {                            
+                            Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, bettingYear, true));
+                            Console.WriteLine(ReportingMethods.GetAnnualResult(ListOfHorseBets, bettingYear, false)); 
+                        }// end foreach
+                    }// end try
                     catch
                     {
                         Console.WriteLine("Error - Please load in default data before running report queries.");
@@ -271,7 +283,7 @@ namespace HotTipster
                     {
                         Console.WriteLine("Option 12) Delete Binary File\n");
                         MyFileIO.DeleteBinaryFile();
-                        Console.WriteLine("Binary file has been deleted.");                        
+                        Console.WriteLine("Binary file has been deleted.");
                     }
                     catch
                     {

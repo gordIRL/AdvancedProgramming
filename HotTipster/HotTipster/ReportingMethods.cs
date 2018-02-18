@@ -12,6 +12,35 @@ namespace HotTipster
         //3.    Provide a report that lists years, total won and total lost, 
         //      e.g., the output will look like the following:
 
+
+
+        // Create a 'distinct' list of all years in which bet were placed
+        public static List<int> ListOfYears(List<HorseBet> ListOfHorseBets)
+        {
+            List<int> ListOfYears = new List<int>();
+
+
+            var ListOfYearsQuery =
+                (from HorseBet in ListOfHorseBets
+                 select HorseBet.RaceDate.Year).Distinct();
+            
+
+            // Add each year from query to a ListOfYears
+            Console.WriteLine("Years in which bets were placed:");
+            foreach (var bettingYear in ListOfYearsQuery)
+            {
+                ListOfYears.Add(bettingYear);
+                Console.WriteLine(bettingYear);
+            }
+            Console.WriteLine();
+
+            return ListOfYears;
+
+        }// end ListOfYears
+
+
+        
+
         public static string GetAnnualResult(List<HorseBet> ListOfHorseBets,   int year, bool winLoseStatus)
         {
             decimal totalAnualResult =
@@ -25,13 +54,31 @@ namespace HotTipster
 
         }// end GetAnnualResult
 
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
         // 4.   Provide a report that shows the most popular race course for bets.
         //      The most popular race course is the one with the most bets placed on it.
-                    
+
         public static string GetMostPopularRaceCourse(List<HorseBet> ListOfHorseBets)
         {
             

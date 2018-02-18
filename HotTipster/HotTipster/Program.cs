@@ -32,6 +32,8 @@ namespace HotTipster
 
 
 
-//  Issue with   Option 6)  Save NewAdditionsToHorseBetList to BinaryFile
 
-    // Issue with Annual Reports - only works for 2016 & 2017 - hard-coded!!
+
+// Issue with Annual Reports - only works for 2016 & 2017 - hard-coded!!
+
+//  You should be using using for any object that implements IDisposable, such as FileStream

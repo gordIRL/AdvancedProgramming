@@ -146,7 +146,17 @@ namespace HotTipster
         {
             if (File.Exists(fullPathForBinaryFile))
             {
-                File.Delete(fullPathForBinaryFile);
+                //// Open Stream
+                //FileStream output = new FileStream(fullPathForBinaryFile, FileMode.Open, FileAccess.Write);      
+
+                // Delete Binary file
+                File.Delete(fullPathForBinaryFile);                
+
+                // Calls to void :              File.Delete error 
+                // “The process cannot access the file because it is being used by another process”
+
+                ////Close Stream
+                //output.Close();              
             }
         }// end DeleteBinaryFile
 
