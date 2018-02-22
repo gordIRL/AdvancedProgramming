@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotTipster
 {
-    public static class ReportingMethods
+    public static class ReportingMethods 
     {
         //3.    Provide a report that lists years, total won and total lost
 
@@ -35,13 +35,13 @@ namespace HotTipster
             }
             else
             {
-                decimal totalAnualResult =
+                decimal totalAnnualResult =
                         (from HorseBet in ListOfHorseBets
                         where HorseBet.RaceDate.Year == year && HorseBet.RaceWasWon == winLoseStatus
                         orderby HorseBet.BalanceChange
                         select (HorseBet.BalanceChange)).Sum();
 
-                return string.Format("Annual result for year: {0} total: {1} {2}", year, totalAnualResult,
+                return string.Format("Annual result for year: {0} total: {1} {2}", year, totalAnnualResult,
                         winLoseStatus ? "Profit" : "Loss");  // uses C# ternary / conditional operator
             }
         }
