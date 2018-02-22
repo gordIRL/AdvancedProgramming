@@ -17,13 +17,15 @@ namespace HotTipster
 
         static void Main(string[] args)
         {
-            bool runProgram = true;            
-
+            bool runProgram = true;
+                       
             while (runProgram)
             {
-                Utility.ScreenDisplay();
+                Utility.ScreenDisplay();     
                 string userSelection = Console.ReadLine();
-                runProgram = SwitchLoop.MainLoop(userSelection);                
+                runProgram = SwitchLoop.MainLoop(userSelection);
+                Utility.WaitForUserAndClearScreen();
+                
             }           
         }
     }
@@ -34,6 +36,4 @@ namespace HotTipster
 
 
 
-// Issue with Annual Reports - only works for 2016 & 2017 - hard-coded!!
-
-//  You should be using using for any object that implements IDisposable, such as FileStream
+//  You should be using 'using' for any object that implements IDisposable, such as FileStream

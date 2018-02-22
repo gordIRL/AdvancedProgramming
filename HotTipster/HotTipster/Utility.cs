@@ -13,10 +13,12 @@ namespace HotTipster
         {
             Console.Write("\n\nPress ENTER to continue: ");
             Console.ReadLine();
-            Console.Clear();
+            Console.Clear();            
         }
 
-        public static void ScreenDisplay()
+
+
+        public static bool ScreenDisplay()
         {
             Console.Clear();
             Console.WriteLine("********************************************************");
@@ -51,6 +53,8 @@ namespace HotTipster
             Console.WriteLine("\nOption 'E') EXIT Program");
 
             Console.Write("\n\nEnter selection: ");
+
+            return true;
         }// end ScreenDisplay
 
 
