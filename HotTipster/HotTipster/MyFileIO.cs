@@ -25,8 +25,7 @@ namespace HotTipster
                 return true;
             else
                 return false;
-        }// end CheckFileExists
-
+        }
 
 
         public static bool CreateFileStream(string userFileName)
@@ -44,14 +43,7 @@ namespace HotTipster
             {
                 return false;
             }
-        }// end CreateFileStream
-
-        
-
-
-
-
-
+        }
 
         public static void WriteToBinaryFile(List<HorseBet> horseBetListLocal)
         {
@@ -86,14 +78,9 @@ namespace HotTipster
             // Close the FileStream
             output.Close();     // close FileStream
             Console.WriteLine("Filestream Closed.");
-
             Console.ReadLine();
-        }// end WriteToBinaryFile
-
-
-
-
-
+        }
+        
 
         public static List<HorseBet> ReadFromBinaryFile()
         {
@@ -121,25 +108,20 @@ namespace HotTipster
             // Create a list to store HorseBets in
             List<HorseBet> tempHorseBetList = new List<HorseBet>();
 
-            // Read in data until end of binary file is detected & add to tempHorseBetList
-            
+            // Read in data until end of binary file is detected & add to tempHorseBetList            
             while (input.Position < input.Length)
             {
                 HorseBet tempHorseBet = new HorseBet();
                 tempHorseBet = (HorseBet)reader.Deserialize(input);
                 tempHorseBetList.Add(tempHorseBet);  
                 Console.WriteLine(tempHorseBet.ToString());                
-            }// end while
-
-
+            }
             // Close the FileStream
-            input.Close();     // close FileStream
-            //Console.WriteLine("Filestream Closed.");   // use for testing
+            input.Close();         
 
             // return HorseBet list
             return tempHorseBetList;
-
-        }// end ReadFromBinaryFile
+        }
 
 
         public static void DeleteBinaryFile()
@@ -158,35 +140,6 @@ namespace HotTipster
                 ////Close Stream
                 //output.Close();              
             }
-        }// end DeleteBinaryFile
-
-
-
-
-
-
-
-      
-     
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }// end class MyFileIO
-}// end Namespace
+        }
+    }
+}

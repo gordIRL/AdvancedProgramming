@@ -198,12 +198,14 @@ namespace HotTipsterTESTS
         {
             // clear horseBetList before reinitializing (otherwise list is appended AGAIN for each test!)
             horseBetList.Clear();
-            HorseBet horseBet1 = new HorseBet("Goodwood", new DateTime(2016, 10, 25), 34.12m, true);
-            HorseBet horseBet2 = new HorseBet("Dundalk", new DateTime(2016, 11, 09), 20.00m, false);
-            HorseBet horseBet3 = new HorseBet("Haydock", new DateTime(2017, 01, 20), 15.00m, false);
-            HorseBet horseBet4 = new HorseBet("Dublin", new DateTime(2017, 03, 06), 200, false);
-            HorseBet horseBet5 = new HorseBet("Dublin", new DateTime(2018, 03, 06), 101.25m, true);
-            HorseBet horseBet6 = new HorseBet("Galway", new DateTime(2018, 07, 06), 200, true);
+            
+            HorseBet horseBet1 = new HorseBet("Haydock", new DateTime(2017, 01, 20), 15.00m, false);
+            HorseBet horseBet2 = new HorseBet("Dublin", new DateTime(2017, 03, 06), 200, false);
+            HorseBet horseBet3 = new HorseBet("Dublin", new DateTime(2018, 03, 06), 101.25m, true);
+            HorseBet horseBet4 = new HorseBet("Galway", new DateTime(2018, 07, 06), 200, true);
+
+            HorseBet horseBet5 = new HorseBet("Goodwood", new DateTime(2016, 10, 25), 34.12m, true);
+            HorseBet horseBet6 = new HorseBet("Dundalk", new DateTime(2016, 11, 09), 20.00m, false);
 
             // Add horsebets to list
             horseBetList.Add(horseBet1);
@@ -215,40 +217,43 @@ namespace HotTipsterTESTS
         }
 
 
-        //[TestMethod]
-        //public void DisplayAllBetsInDateOrder_1()
-        //{
-        //    // Arrange  
-        //    List<HorseBet> expectedList = new List<HorseBet>();
+        [TestMethod]
+        public void DisplayAllBetsInDateOrder_1()
+        {
+            // Arrange  
+            List<HorseBet> expectedList = new List<HorseBet>();
 
-        //    // Create 6 new horsebets (same as above)
-        //    //HorseBet horseBet6 = new HorseBet("Goodwood", new DateTime(2016, 10, 25), 34.12m, true);
-        //    HorseBet horseBet5 = new HorseBet("Goodwood", new DateTime(2016, 10, 25), 34.12m, true);
-        //    HorseBet horseBet6 = new HorseBet("Dundalk", new DateTime(2016, 11, 09), 20.00m, false);
-        //    HorseBet horseBet7 = new HorseBet("Haydock", new DateTime(2017, 01, 20), 15.00m, false);
-        //    HorseBet horseBet8 = new HorseBet("Dublin", new DateTime(2017, 03, 06), 200, false);
-        //    HorseBet horseBet9 = new HorseBet("Dublin", new DateTime(2018, 03, 06), 101.25m, true);
-        //    HorseBet horseBet10 = new HorseBet("Galway", new DateTime(2018, 07, 06), 200, true);
+            // Create 6 new horsebets (same as above)
+            //HorseBet horseBet6 = new HorseBet("Goodwood", new DateTime(2016, 10, 25), 34.12m, true);
+            HorseBet horseBet1 = new HorseBet("Goodwood", new DateTime(2016, 10, 25), 34.12m, true);
+            HorseBet horseBet2 = new HorseBet("Dundalk", new DateTime(2016, 11, 09), 20.00m, false);
+            HorseBet horseBet3 = new HorseBet("Haydock", new DateTime(2017, 01, 20), 15.00m, false);
+            HorseBet horseBet4 = new HorseBet("Dublin", new DateTime(2017, 03, 06), 200, false);
+            HorseBet horseBet5 = new HorseBet("Dublin", new DateTime(2018, 03, 06), 101.25m, true);
+            HorseBet horseBet6 = new HorseBet("Galway", new DateTime(2018, 07, 06), 200, true);
 
-        //    // this time use chronological order (oldest to newest) to add horsebets to list
-        //    expectedList.Add(horseBet5);
-        //    expectedList.Add(horseBet6);
-        //    expectedList.Add(horseBet7);
-        //    expectedList.Add(horseBet8);
-        //    expectedList.Add(horseBet9);
-        //    expectedList.Add(horseBet10);
+            // this time use chronological order (oldest to newest) to add horsebets to list
+            expectedList.Add(horseBet1);
+            expectedList.Add(horseBet2);
+            expectedList.Add(horseBet3);
+            expectedList.Add(horseBet4);
+            expectedList.Add(horseBet5);
+            expectedList.Add(horseBet6);
 
-        //    //Act 
-        //    List<HorseBet> actualList = (ReportingMethods.DisplayAllBetsInDateOrder(horseBetList));
-        //    //actual = ReportingMethods.DisplayAllBetsInDateOrder(horseBetList);    // list instantiated from [TEST INITIALIZER]
+            //Act 
+            // use the horsebet list instantiated from [TEST INITIALIZER]
+            List<HorseBet> actualList = (ReportingMethods.DisplayAllBetsInDateOrder(horseBetList));
 
-        //    // Assert
-        //    //CollectionAssert.AreEqual(expected, actual);  // same elements & same order
-        //    CollectionAssert.AreEquivalent(expectedList, actualList);  // contains same elements
-        //    //CollectionAssert.Equals (expected, actual); 
-        //    //Assert.IsTrue(expectedList.SequenceEqual(actualList));
-        //}
-        
+            // Assert
+            //CollectionAssert.AreEqual(expectedList, actualList);  // same elements & same order
+            //CollectionAssert.AreEquivalent(expectedList, actualList);  // contains same elements
+            //Assert.IsTrue(expectedList.SequenceEqual(actualList));
+
+            // working version:
+            CollectionAssert.Equals (expectedList, actualList); 
+            
+        }
+
 
 
 

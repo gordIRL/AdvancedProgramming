@@ -19,7 +19,7 @@ namespace HotTipster
             List<HorseBet> HorseBetList = new List<HorseBet>();
             
             // Path for test data
-            string testDataPath = @"C:\dbs\HotTipsterTestDataFULLVERSION.txt";   
+            string testDataPath = @"C:\dbs\HotTipsterTestData_default.txt";   
 
             // Open file with write access via FileStream
             FileStream input = new FileStream(testDataPath, FileMode.OpenOrCreate, FileAccess.Read);
