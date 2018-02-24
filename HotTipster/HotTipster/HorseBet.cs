@@ -14,13 +14,10 @@ namespace HotTipster
         public decimal BalanceChange { get; set; }
         public bool RaceWasWon { get; set; }
 
-
         public HorseBet()
         {
             // empty constructor
         }   
-
-
 
         public HorseBet(string raceCourse, DateTime raceDate, decimal balanceChange, bool raceWasWon)
         {
@@ -30,13 +27,10 @@ namespace HotTipster
             RaceWasWon = raceWasWon;
         }
 
-
         public override string ToString()
         {
             return string.Format("{0}  {1}  {2}  {3}",
                 RaceCourse, RaceDate.ToShortDateString(), BalanceChange, RaceWasWon); 
         }
-
-
-    }// end class HorseBet
-}// end Namespace
+    }
+}

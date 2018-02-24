@@ -12,16 +12,15 @@ using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 
 
-
 namespace HotTipsterTESTS
 {
     [TestClass]
     public class UnitTest1
     {
-        //Create list for result horsebetlist 
+        //Create list for result horsebetlist to be used with multiple tests
         public static List<HorseBet> horseBetList = new List<HorseBet>();
 
-
+        // Populate list with horsebet data
         [TestInitialize()]
         public void Initialize()           //CreateHorseBetListForTestClasses()
         {
@@ -103,10 +102,7 @@ namespace HotTipsterTESTS
             // act                     
             bool result = MyFileIO.CreateFileStream(@"Z:\dbs\testBinary1.bin");
 
-            //assert(not working)
-            // provided above by including   [ExpectedException(typeof(System.NotSupportedException))]
-
-            //assert(working)
+            //assert
             bool expected = false;
             Assert.AreEqual(expected, result);
         }
@@ -152,7 +148,6 @@ namespace HotTipsterTESTS
 
             //assert
             bool expected = true;
-
             Assert.AreEqual(expected, result);
         }
 
@@ -391,11 +386,9 @@ namespace HotTipsterTESTS
             // Assert
             Assert.IsNotNull(tempList);            
         }
-
         
         //[TestCleanup()]               // Not in use.
-        //public void Cleanup()
-        //{
-        //}
+        //public void Cleanup()  {  }
+        
     }
 }

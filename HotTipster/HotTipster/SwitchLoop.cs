@@ -8,9 +8,9 @@ namespace HotTipster
 {
     public static class SwitchLoop
     {
+        // Instantiate 2 lists used throught all methods & options below:
         public static List<HorseBet> ListOfHorseBets = new List<HorseBet>();
-        public static List<HorseBet> NewAdditionsToHorseBetList = new List<HorseBet>();
-        
+        public static List<HorseBet> NewAdditionsToHorseBetList = new List<HorseBet>();        
 
         public static bool MainLoop(string userSelection)
         {            
@@ -91,7 +91,7 @@ namespace HotTipster
                         Console.WriteLine("\nOption 4)  Create new HorseBet and add to NewAdditionsHorseBetList & ListOfHorseBets \n\n");
                         
                         //Create a HorseBet 
-                        HorseBet tempHorseBet = CreateHorseBet.Method1();
+                        HorseBet tempHorseBet = CreateHorseBet.CreateNewHorseBet();
 
                         // Add to ListOfHorseBets (for display purposes & to be included in Reports queries)
                         ListOfHorseBets.Add(tempHorseBet);

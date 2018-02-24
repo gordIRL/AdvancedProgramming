@@ -65,8 +65,8 @@ namespace HotTipster
                 };            
             // get the single highest amount of bets for any racecourse in the list
             var maxSingleAmountOfBetsOfAnyRaceCourse =
-                    (from rrr in noOfBetsPerRaceCourse
-                    select (rrr.totalBetsPerCourse)).Max();     // select MAX or MIN here            
+                    (from noOfBetsPerIndividualCourse in noOfBetsPerRaceCourse
+                    select (noOfBetsPerIndividualCourse.totalBetsPerCourse)).Max();     // select MAX or MIN here            
 
             // Assign maxSingleAmountOfBetsOfAnyRaceCourse to integer max
             int maxSingleAmountInt = maxSingleAmountOfBetsOfAnyRaceCourse;            

@@ -4,7 +4,7 @@ Please Read:     Information for HotTipster (10352606 - Gordon Leary)
 
 File Locations:
 Please copy the included txt default data file to:
-C:\dbs\HotTipsterTestDataFULLVERSION.txt     			(ImportDefaultData.cs - line 22)
+C:\dbs\HotTipsterTestData_default     				(ImportDefaultData.cs - line 22)
 
 bin files are created automatically & will be located at:
 C:\dbs\HotTipsterData.bin					(MyFileIO.cs - line 15)

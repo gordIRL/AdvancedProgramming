@@ -8,12 +8,11 @@ namespace HotTipster
 {
     public static class CreateHorseBet
     {
-        public static HorseBet Method1()
+        public static HorseBet CreateNewHorseBet()
         {
             // User inputs RaceCourse Name
             Console.Write("Please enter RaceCourse Name: ");
             string tempRaceCourse =  Console.ReadLine();
-
 
             // User inputs date of race
             bool successfulEntry = false;
@@ -31,11 +30,8 @@ namespace HotTipster
                 {
                     Console.WriteLine("Invalid date entry");
                 }
-            }// end while loop
-
+            }
             
-
-
             // User inputs amount that was won or lost
             successfulEntry = false;
             decimal tempBalanceChange = 0;
@@ -52,11 +48,7 @@ namespace HotTipster
                 {
                     Console.WriteLine("Invalid - please enter a valid number");
                 }
-            }// end while loop
-
-
-
-
+            }
 
             // User inputs true or false to indicate if amount was won or lost
             successfulEntry = false;
@@ -81,23 +73,18 @@ namespace HotTipster
                 {
                     Console.WriteLine("Invalid entry");
                 }
-            }// end while loop
-
-
+            }
             HorseBet horseBet1 = new HorseBet(tempRaceCourse, tempRaceDate, tempBalanceChange, tempRaceWasWon);
             Console.WriteLine();
             Console.WriteLine(horseBet1.ToString());
 
-
             Console.WriteLine("\nHorseBet created with the following data:");
             Console.WriteLine("{0}  {1}  {2}  {3}",
                 tempRaceCourse, tempRaceDate, tempBalanceChange, tempRaceWasWon);
-            Console.ReadLine();
-            
+            Console.ReadLine();            
             
             // return newly created HorseBet
             return horseBet1;
-
-        }// end Method1
-    }// end CreateHorseBet
-}// end Namespace
+        }
+    }
+}

@@ -13,8 +13,6 @@ namespace HotTipster
 {
     class Program
     {
-        
-
         static void Main(string[] args)
         {
             bool runProgram = true;
@@ -24,16 +22,8 @@ namespace HotTipster
                 Utility.ScreenDisplay();     
                 string userSelection = Console.ReadLine();
                 runProgram = SwitchLoop.MainLoop(userSelection);
-                Utility.WaitForUserAndClearScreen();
-                
+                Utility.WaitForUserAndClearScreen();                
             }           
         }
     }
 }
-
-
-
-
-
-
-//  You should be using 'using' for any object that implements IDisposable, such as FileStream

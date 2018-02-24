@@ -53,18 +53,14 @@ namespace HotTipster
             {
                 File.Create(fullPathForBinaryFile);
             }
-
-
             // open file with write access via FileStream
             FileStream output = new FileStream(fullPathForBinaryFile, FileMode.Append, FileAccess.Write);  // FileMode.OpenOrCreate
             Console.WriteLine("IO Stream created.");
-
-
+            
             // Create a BinaryFormatter
             BinaryFormatter formatter = new BinaryFormatter();
             Console.WriteLine("BinaryFormatter created.");
-
-
+            
             // Iterate through NewAdditionsToHorseBetList & write out to binary file
             int counterWriteToBinary = 0;
             foreach (HorseBet hb in horseBetListLocal)
@@ -94,17 +90,13 @@ namespace HotTipster
             // Create a BinaryFormatter (Reader)
             BinaryFormatter reader = new BinaryFormatter();
             //Console.WriteLine("BinaryFormatter (Reader) created.");  // use for testing
-
-
+            
             // Alert user if data file is empty
             if(input.Length == 0)
             {
                 Console.WriteLine("\n\nNo data currently in file.\n\n");
             }
-
-            // Set up counter that is the length of the binary file
-            //int counter = (int)input.Length - 1;//int counter = (int)input.Length - 1;
-
+            
             // Create a list to store HorseBets in
             List<HorseBet> tempHorseBetList = new List<HorseBet>();
 
@@ -128,17 +120,8 @@ namespace HotTipster
         {
             if (File.Exists(fullPathForBinaryFile))
             {
-                //// Open Stream
-                //FileStream output = new FileStream(fullPathForBinaryFile, FileMode.Open, FileAccess.Write);      
-
                 // Delete Binary file
-                File.Delete(fullPathForBinaryFile);                
-
-                // Calls to void :              File.Delete error 
-                // “The process cannot access the file because it is being used by another process”
-
-                ////Close Stream
-                //output.Close();              
+                File.Delete(fullPathForBinaryFile);                          
             }
         }
     }

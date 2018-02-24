@@ -8,14 +8,12 @@ namespace HotTipster
 {
     public static class Utility
     {
-
         public static void WaitForUserAndClearScreen()
         {
             Console.Write("\n\nPress ENTER to continue: ");
             Console.ReadLine();
             Console.Clear();            
         }
-
 
 
         public static bool ScreenDisplay()
@@ -55,12 +53,6 @@ namespace HotTipster
             Console.Write("\n\nEnter selection: ");
 
             return true;
-        }// end ScreenDisplay
-
-
-
-
-
-
-    }// end class
-}// end Namespace
+        }
+    }
+}
