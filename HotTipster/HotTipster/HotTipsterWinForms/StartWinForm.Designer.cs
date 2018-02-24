@@ -61,6 +61,7 @@
             this.btnCreateHorseBet = new System.Windows.Forms.Button();
             this.btnViewNewAdditionsListUnsavedChanges = new System.Windows.Forms.Button();
             this.btnDeleteBinaryFile = new System.Windows.Forms.Button();
+            this.btnDeleteSeleted = new System.Windows.Forms.Button();
             this.grpbCreateNewHorseBet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ep1)).BeginInit();
             this.SuspendLayout();
@@ -89,7 +90,7 @@
             this.lstDefaultData.FormattingEnabled = true;
             this.lstDefaultData.Location = new System.Drawing.Point(16, 34);
             this.lstDefaultData.Name = "lstDefaultData";
-            this.lstDefaultData.Size = new System.Drawing.Size(395, 134);
+            this.lstDefaultData.Size = new System.Drawing.Size(407, 134);
             this.lstDefaultData.TabIndex = 31;
             // 
             // btnviewCurrentHorseBetList
@@ -106,7 +107,7 @@
             // 
             this.btnClearDisplay.Location = new System.Drawing.Point(336, 187);
             this.btnClearDisplay.Name = "btnClearDisplay";
-            this.btnClearDisplay.Size = new System.Drawing.Size(75, 62);
+            this.btnClearDisplay.Size = new System.Drawing.Size(87, 62);
             this.btnClearDisplay.TabIndex = 3;
             this.btnClearDisplay.Text = "Clear Display";
             this.btnClearDisplay.UseVisualStyleBackColor = true;
@@ -358,9 +359,9 @@
             // 
             // btnViewNewAdditionsListUnsavedChanges
             // 
-            this.btnViewNewAdditionsListUnsavedChanges.Location = new System.Drawing.Point(237, 262);
+            this.btnViewNewAdditionsListUnsavedChanges.Location = new System.Drawing.Point(336, 262);
             this.btnViewNewAdditionsListUnsavedChanges.Name = "btnViewNewAdditionsListUnsavedChanges";
-            this.btnViewNewAdditionsListUnsavedChanges.Size = new System.Drawing.Size(174, 62);
+            this.btnViewNewAdditionsListUnsavedChanges.Size = new System.Drawing.Size(87, 62);
             this.btnViewNewAdditionsListUnsavedChanges.TabIndex = 6;
             this.btnViewNewAdditionsListUnsavedChanges.Text = "View Unsaved Changes  ( to new Additions List )";
             this.btnViewNewAdditionsListUnsavedChanges.UseVisualStyleBackColor = true;
@@ -376,11 +377,22 @@
             this.btnDeleteBinaryFile.UseVisualStyleBackColor = true;
             this.btnDeleteBinaryFile.Click += new System.EventHandler(this.btnDeleteBinaryFile_Click);
             // 
+            // btnDeleteSeleted
+            // 
+            this.btnDeleteSeleted.Location = new System.Drawing.Point(237, 262);
+            this.btnDeleteSeleted.Name = "btnDeleteSeleted";
+            this.btnDeleteSeleted.Size = new System.Drawing.Size(75, 62);
+            this.btnDeleteSeleted.TabIndex = 6;
+            this.btnDeleteSeleted.Text = "Delete Selected";
+            this.btnDeleteSeleted.UseVisualStyleBackColor = true;
+            this.btnDeleteSeleted.Click += new System.EventHandler(this.btnDeleteSeleted_Click);
+            // 
             // StartWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(945, 486);
+            this.Controls.Add(this.btnDeleteSeleted);
             this.Controls.Add(this.btnDeleteBinaryFile);
             this.Controls.Add(this.btnViewNewAdditionsListUnsavedChanges);
             this.Controls.Add(this.btnCreateHorseBet);
@@ -446,5 +458,6 @@
         private System.Windows.Forms.Button btnDiscardHorseBet;
         private System.Windows.Forms.Button btnViewNewAdditionsListUnsavedChanges;
         private System.Windows.Forms.Button btnDeleteBinaryFile;
+        private System.Windows.Forms.Button btnDeleteSeleted;
     }
 }

@@ -15,10 +15,37 @@ using System.Text.RegularExpressions;
 
 namespace HotTipsterTESTS
 {
-
     [TestClass]
     public class UnitTest1
     {
+        //Create list for result horsebetlist 
+        public static List<HorseBet> horseBetList = new List<HorseBet>();
+
+
+        [TestInitialize()]
+        public void Initialize()           //CreateHorseBetListForTestClasses()
+        {
+            // clear horseBetList before reinitializing (otherwise list is appended AGAIN for each test!)
+            horseBetList.Clear();
+
+            HorseBet horseBet1 = new HorseBet("Haydock", new DateTime(2017, 01, 20), 15.00m, false);
+            HorseBet horseBet2 = new HorseBet("Dublin", new DateTime(2017, 03, 06), 200, false);
+            HorseBet horseBet3 = new HorseBet("Dublin", new DateTime(2018, 03, 06), 101.25m, true);
+            HorseBet horseBet4 = new HorseBet("Galway", new DateTime(2018, 07, 06), 200, true);
+
+            HorseBet horseBet5 = new HorseBet("Goodwood", new DateTime(2016, 10, 25), 34.12m, true);
+            HorseBet horseBet6 = new HorseBet("Dundalk", new DateTime(2016, 11, 09), 20.00m, false);
+
+            // Add horsebets to list
+            horseBetList.Add(horseBet1);
+            horseBetList.Add(horseBet2);
+            horseBetList.Add(horseBet3);
+            horseBetList.Add(horseBet4);
+            horseBetList.Add(horseBet5);
+            horseBetList.Add(horseBet6);
+        }
+
+
         [TestMethod]
         // Test to confirm bool true if file exists
         public void Test_BinaryWriter_1_ExistingFile()
@@ -69,8 +96,7 @@ namespace HotTipsterTESTS
         }
         
 
-        [TestMethod]
-        // not working - [ExpectedException(typeof(System.NotSupportedException))]        
+        [TestMethod]  
         // Test to confirm bool true if new file has been created
         public void Test_BinaryWriter_4_TestForFileCreatedExceptionThrown()
         {
@@ -140,7 +166,6 @@ namespace HotTipsterTESTS
 
             //assert
             bool expected = false;
-
             Assert.AreEqual(expected, result);
         }
 
@@ -154,7 +179,6 @@ namespace HotTipsterTESTS
 
             //assert
             bool expected = false;
-
             Assert.AreEqual(expected, result);
         }
 
@@ -168,7 +192,6 @@ namespace HotTipsterTESTS
 
             //assert
             bool expected = true;
-
             Assert.AreEqual(expected, result);
         }
         
@@ -182,39 +205,8 @@ namespace HotTipsterTESTS
 
             //assert
             bool expected = true;
-
             Assert.AreEqual(expected, result);
-        }
-
-
-        //-------------------------------------------------------------------------------------
-        
-        //Create list for result horsebetlist 
-        public static List<HorseBet> horseBetList = new List<HorseBet>();
-        //public static List<HorseBet> actual = new List<HorseBet>();
-
-       [TestInitialize()]
-        public void Initialize()           //CreateHorseBetListForTestClasses()
-        {
-            // clear horseBetList before reinitializing (otherwise list is appended AGAIN for each test!)
-            horseBetList.Clear();
-            
-            HorseBet horseBet1 = new HorseBet("Haydock", new DateTime(2017, 01, 20), 15.00m, false);
-            HorseBet horseBet2 = new HorseBet("Dublin", new DateTime(2017, 03, 06), 200, false);
-            HorseBet horseBet3 = new HorseBet("Dublin", new DateTime(2018, 03, 06), 101.25m, true);
-            HorseBet horseBet4 = new HorseBet("Galway", new DateTime(2018, 07, 06), 200, true);
-
-            HorseBet horseBet5 = new HorseBet("Goodwood", new DateTime(2016, 10, 25), 34.12m, true);
-            HorseBet horseBet6 = new HorseBet("Dundalk", new DateTime(2016, 11, 09), 20.00m, false);
-
-            // Add horsebets to list
-            horseBetList.Add(horseBet1);
-            horseBetList.Add(horseBet2);
-            horseBetList.Add(horseBet3);
-            horseBetList.Add(horseBet4);
-            horseBetList.Add(horseBet5);
-            horseBetList.Add(horseBet6);
-        }
+        }     
 
 
         [TestMethod]
@@ -244,25 +236,16 @@ namespace HotTipsterTESTS
             // use the horsebet list instantiated from [TEST INITIALIZER]
             List<HorseBet> actualList = (ReportingMethods.DisplayAllBetsInDateOrder(horseBetList));
 
-            // Assert
+            // Assert  (Test Versions)
             //CollectionAssert.AreEqual(expectedList, actualList);  // same elements & same order
             //CollectionAssert.AreEquivalent(expectedList, actualList);  // contains same elements
             //Assert.IsTrue(expectedList.SequenceEqual(actualList));
 
-            // working version:
-            CollectionAssert.Equals (expectedList, actualList); 
-            
+            // Assert Working version:
+            CollectionAssert.Equals (expectedList, actualList);             
         }
 
-
-
-
-        //[TestCleanup()]
-        //public void Cleanup()
-        //{
-        //}
-
-
+        
         [TestMethod]
         public void ReportingMethods_ListOfYears()
         {
@@ -287,8 +270,6 @@ namespace HotTipsterTESTS
             string expected = string.Format
                             ("Annual result for year: {0} total: {1} {2}", year, totalAnnualResult,
                                 winLoseStatus ? "Profit" : "Loss");
-
-
             //Act 
             string result = ReportingMethods.GetAnnualResult(horseBetList, 2016, true);            
             // Assert
@@ -338,17 +319,12 @@ namespace HotTipsterTESTS
 
             string expected = string.Format("\nRacecourse: {0} - No of bets placed: {1}",
                     raceCourse, totalBetsPerCourse);
-
             //Act 
-            string result = ReportingMethods.GetMostPopularRaceCourse(horseBetList);
-            
+            string result = ReportingMethods.GetMostPopularRaceCourse(horseBetList);            
 
             // Assert
             StringAssert.Contains( result, expected);
         }
-
-
-
 
 
         [TestMethod]
@@ -369,8 +345,6 @@ namespace HotTipsterTESTS
         }
 
 
-
-
         [TestMethod]
         public void ReportingMethods_HighestAmountWonOrLostOnARace_2_LOSS()
         {
@@ -387,8 +361,6 @@ namespace HotTipsterTESTS
             // Assert
             StringAssert.Contains(actual, expected);
         }
-
-
 
 
         [TestMethod]
@@ -410,8 +382,6 @@ namespace HotTipsterTESTS
         }
 
 
-
-
         // Test for successful load of test data
         [TestMethod]
         public void ImportDefaultData_1()
@@ -422,29 +392,10 @@ namespace HotTipsterTESTS
             Assert.IsNotNull(tempList);            
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        ////Where your method SHOULD throw an exception for given input, use the 
-        ////following annotation to specify this:
-        ////[TestMethod]
-        ////[ExpectedException(typeof(ArgumentOutOfRangeException))]
-
-
-    }// end class UnitTest1
-}// end Namespace
+        
+        //[TestCleanup()]               // Not in use.
+        //public void Cleanup()
+        //{
+        //}
+    }
+}

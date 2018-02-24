@@ -16,6 +16,7 @@ namespace HotTipster.HotTipsterWinForms
         {
             InitializeComponent();
             grpbCreateNewHorseBet.Enabled = false;
+            //btnDeleteSeleted.Enabled = false;
         }
 
         // Initialize list for Horsebets & for NewAdditions (unsaved changes)
@@ -420,5 +421,27 @@ namespace HotTipster.HotTipsterWinForms
                 lblErrorMessage.Text = "Error - Option 12 - MyFileIO.DeleteBinaryFile()";
             }
         }
-    }
-}
+
+        private void btnDeleteSeleted_Click(object sender, EventArgs e)
+        {
+            int counter = lstDefaultData.SelectedIndex;
+            if (counter >= 0)
+            {
+                MessageBox.Show(string.Format("Selected Index is: {0}", counter));
+                string tempString = lstDefaultData.Items[counter].ToString();
+                DialogResult result =  MessageBox.Show(tempString, "DELETE this bet ?", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    lstDefaultData.Items.RemoveAt(counter);               
+                    ListOfHorseBets.RemoveAt(counter);                                   
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nothing is selected.");
+            }
+        }
+
+
+    }//
+}//
