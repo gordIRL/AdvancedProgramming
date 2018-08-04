@@ -1,16 +1,9 @@
 # AdvancedProgramming
-Learning advanced programming via C#
 
+Assignments and exercises for my Advanced Programming Module, Level 8, Higher Diploma in Computer Science (Software Development) 
+in DBS, Dublin Business School.
 
-Week 1: Streaming Files (reading and writing files)
-
-Week 2: Regular Expressions (regex)
-
-Week 3: Using version control
-
-
-
-
-7th Dec Test 1
-
-Git test
+Includes:
+Streaming Files (reading and writing files)
+Regular Expressions (regex)
+Using version control (GIT)
