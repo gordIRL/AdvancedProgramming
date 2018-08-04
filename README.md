@@ -4,11 +4,11 @@ Assignments and exercises for my Advanced Programming Module, Level 8, Higher Di
 in DBS, Dublin Business School.
 
 Includes:
-A calculator programmed in C# with unit test which was then ported into Python.
+A calculator programmed in C# with accompanying unit tests which was then ported into Python.
 
 All other applications were developed in C#, using Visual Studio:
 
 Streaming Files (reading and writing files)
 Regular Expressions (regex)
 Using version control (GIT)
-Hot Tipster App.
+ & Hot Tipster App.
